@@ -1,0 +1,65 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+  <div class="row top-menu">
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-2 text-right">
+    </div>
+  </div>
+  <div class="row divider blue">
+    <div class="col-md-12">
+    </div>
+  </div>
+  <div class="row banner main">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-11 padding-none">
+      <h1>Catagories</h1>
+    </div>
+  </div>
+
+  <div class="flash">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>
+              <strong>{{ message }}</strong>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+  </div>
+
+  <div class="row padding-top padding-bottom">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 padding-none">
+      <a href="{{ url_for('newCatagory') }}">
+        <button class="btn btn-default" id="new-catagory">
+          <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add Catagory
+        </button>
+      </a>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  {% for catagory in catagories %}
+    <a href="{{ url_for('showItems', catagory_id=catagory.id) }}">
+      <div class="row">
+        <div class="col-md-1"></div>
+          <div class="col-md-10 catagory-list">
+            <h3>{{ catagory.name }}</h3>
+            <p>
+              <a href="{{ url_for('editCatagory', catagory_id=catagory.id) }}">Edit Catagory</a>
+            </p>
+            <p>
+              <a href="{{ url_for('deleteCatagory', catagory_id=catagory.id) }}">Delete Catagory</a>
+            </p>
+          </div>
+        <div class="col-md-1"></div>
+      </div>
+    </a>
+  {% endfor %}
+{% endblock %}
