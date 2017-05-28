@@ -20,6 +20,7 @@ $ cd /vagrant
 $ cd Item-Catalog-App
 $ python database_setup.py
 $ python lotsofmenus.py
+$ python project.py
 ```
 Open your prefered browser and vist the site via
 ```
