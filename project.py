@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
-
+from flask import Flask, render_template, request
+from flask import redirect, jsonify, url_for, flash
 
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
@@ -31,9 +31,12 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-# Create anti-forgery state token
 @app.route('/login')
 def showLogin():
+    """
+    Create anti-forgery state token
+    and render the login interface for users
+    """
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in xrange(32))
     login_session['state'] = state
@@ -41,9 +44,16 @@ def showLogin():
     return render_template('login.html', STATE=state)
 
 
-# Google login
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
+    """
+    Google login
+    1. Validate the anti-forgery state token generated above
+    2. Obtain authorization code and Upgrade the authorization code
+    into a credentials object(access token)
+    3. Handle cases like 'invalid token'.
+    4. Get user info and check if it exists, if it doesn't make a new one.
+    """
     # Validate state token
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
@@ -126,16 +136,19 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += ''' " style = "width: 300px; height: 300px;border-radius: 150px;
+              -webkit-border-radius: 150px;-moz-border-radius: 150px;"> '''
     flash("you are now logged in as %s" % login_session['username'])
     print "done!"
     return output
 
 
-# DISCONNECT - Revoke a current user's token and reset their login_session
 @app.route('/gdisconnect')
 def gdisconnect():
-        # Only disconnect a connected user.
+    """
+    Revoke a current user's token and reset their login_session.
+    """
+    # Only disconnect a connected user.
     credentials = login_session.get('credentials')
     if credentials is None:
         response = make_response(
@@ -185,14 +198,16 @@ def getUserID(email):
     try:
         user = session.query(User).filter_by(email=email).one()
         return user.id
-    except:
+    except email.DoesNotExist:
         return None
 
 
 # JSON APIs to view Catagory Information
 @app.route('/catagory/<int:catagory_id>/items/JSON')
 def catagoryItemsJSON(catagory_id):
-    catagory = session.query(Catagory).filter_by(id=catagory_id).one()
+    """
+    to show the items info of a specific catagory in JSON format
+    """
     items = session.query(Item).filter_by(
         catagory_id=catagory_id).all()
     return jsonify(Items=[i.serialize for i in items])
@@ -200,20 +215,30 @@ def catagoryItemsJSON(catagory_id):
 
 @app.route('/catagory/<int:catagory_id>/items/<int:item_id>/JSON')
 def itemJSON(catagory_id, item_id):
+    """
+    to show a specific item in JSON format
+    """
     oneItem = session.query(Item).filter_by(id=item_id).one()
     return jsonify(oneItem=oneItem.serialize)
 
 
 @app.route('/catagory/JSON')
 def catagoriesJSON():
+    """
+    to show all the catagories info in JSON format
+    """
     catagories = session.query(Catagory).all()
     return jsonify(catagories=[r.serialize for r in catagories])
 
 
-# Show all catagories
 @app.route('/')
 @app.route('/catagory/')
 def showCatagories():
+    """
+    Show all catagories
+    if user has logged in, render the interface with functions of edit/delete
+    if has not, render the view-only page.
+    """
     catagories = session.query(Catagory).order_by(asc(Catagory.name))
     if 'username' not in login_session:
         return render_template('publicCatagories.html', catagories=catagories)
@@ -221,9 +246,14 @@ def showCatagories():
         return render_template('catagories.html', catagories=catagories)
 
 
-# Create a new catagory
 @app.route('/catagory/new/', methods=['GET', 'POST'])
 def newCatagory():
+    """
+    Create a new catagory
+    if user has logged in, enable the user to create a new catogory
+    if not, show the user a waring and won't redirect.
+    """
+
     if 'username' not in login_session:
         return redirect('/login')
     if request.method == 'POST':
@@ -237,15 +267,20 @@ def newCatagory():
         return render_template('newCatagory.html')
 
 
-# Edit a catagory
 @app.route('/catagory/<int:catagory_id>/edit/', methods=['GET', 'POST'])
 def editCatagory(catagory_id):
+    """
+    Edit an existing catagory
+    if user has logged in, enable the user to edit an existing catogory
+    if not, show the user a waring and won't redirect.
+    """
     if 'username' not in login_session:
         return redirect('/login')
     catagoryToEdit = session.query(
         Catagory).filter_by(id=catagory_id).one()
     if catagoryToEdit.user_id != login_session['user_id']:
-        flash('You are not authorized to edit this catagory. Please create your own catagory in order to edit.')
+        flash('''You are not authorized to edit this catagory.
+              Please create your own catagory in order to edit.''')
         return redirect(url_for('showCatagories'))
     if request.method == 'POST':
         if request.form['name']:
@@ -257,14 +292,19 @@ def editCatagory(catagory_id):
                                catagory=catagoryToEdit)
 
 
-# Delete a catagory
 @app.route('/catagory/<int:catagory_id>/delete/', methods=['GET', 'POST'])
 def deleteCatagory(catagory_id):
+    """
+    Edit an exsiting catagory
+    if user has logged in, enable the user to delete an existing catogory
+    if not, show the user a waring and won't redirect.
+    """
     if 'username' not in login_session:
         return redirect('/login')
     catagoryToDelete = session.query(Catagory).filter_by(id=catagory_id).one()
     if catagoryToDelete.user_id != login_session['user_id']:
-        flash('You are not authorized to delete this catagory. Please create your own catagory in order to delete.')
+        flash('''You are not authorized to delete this catagory.
+              Please create your own catagory in order to delete.''')
         return redirect(url_for('showCatagories',
                                 catagory_id=catagory_id))
     if request.method == 'POST':
@@ -282,11 +322,17 @@ def deleteCatagory(catagory_id):
 @app.route('/catagory/<int:catagory_id>/')
 @app.route('/catagory/<int:catagory_id>/items/')
 def showItems(catagory_id):
+    """
+    Show all items
+    if user has logged in, render the interface with functions of edit/delete
+    if has not, render the view-only page.
+    """
     catagory = session.query(Catagory).filter_by(id=catagory_id).one()
     creator = getUserInfo(catagory.user_id)
     items = session.query(Item).filter_by(
         catagory_id=catagory_id).all()
-    if 'username' not in login_session or creator.id != login_session['user_id']:
+    if ('username' not in login_session or
+            creator.id != login_session['user_id']):
         return render_template('publicItems.html',
                                items=items,
                                catagory=catagory,
@@ -298,10 +344,14 @@ def showItems(catagory_id):
                                creator=creator)
 
 
-# Create a new item
 @app.route('/catagory/<int:catagory_id>/items/new/',
            methods=['GET', 'POST'])
 def newItem(catagory_id):
+    """
+    Create a new item
+    if user has logged in, enable the user to create a new item
+    if not, show the user a waring and won't redirect.
+    """
     if 'username' not in login_session:
         return redirect('/login')
     catagory = session.query(Catagory).filter_by(id=catagory_id).one()
@@ -323,6 +373,11 @@ def newItem(catagory_id):
 @app.route('/catagory/<int:catagory_id>/items/<int:item_id>/edit',
            methods=['GET', 'POST'])
 def editItem(catagory_id, item_id):
+    """
+    Edit an existing item
+    if user has logged in, enable the user to edit an existing item
+    if not, show the user a waring and won't redirect.
+    """
     if 'username' not in login_session:
         return redirect('/login')
     itemToEdit = session.query(Item).filter_by(id=item_id).one()
@@ -348,6 +403,11 @@ def editItem(catagory_id, item_id):
 @app.route('/catagory/<int:catagory_id>/items/<int:item_id>/delete',
            methods=['GET', 'POST'])
 def deleteItem(catagory_id, item_id):
+    """
+    Delete an existing item
+    if user has logged in, enable the user to delete an existing item
+    if not, show the user a waring and won't redirect.
+    """
     if 'username' not in login_session:
         return redirect('/login')
     itemToDelete = session.query(Item).filter_by(id=item_id).one()
