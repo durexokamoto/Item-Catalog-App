@@ -7,7 +7,7 @@ It's an application that provides a list of items within a variety of categories
   - VirtualBox
   - Vagrant
   - ubuntu-xenial
-  - Python
+  - Python 2.7.12
 
 
 ### How-to
