@@ -43,7 +43,8 @@ session.commit()
 
 item2 = Item(user_id=1,
              name="Soccer Socks",
-             description="Soccer socks are extremely long. They cover shin guards.",
+             description='''Soccer socks are extremely long.
+                         They cover shin guards.''',
              price="$5.99",
              category=category1)
 
@@ -61,7 +62,8 @@ session.commit()
 
 item4 = Item(user_id=1,
              name="Soccer Ball",
-             description="Soccer balls allows players to train and play individually or with friends.",
+             description='''Soccer balls allows players to train
+                         and play individually or with friends.''',
              price="$13.99",
              category=category1)
 
@@ -70,7 +72,8 @@ session.commit()
 
 item5 = Item(user_id=1,
              name="Water Bottle",
-             description="Every player needs to drink water during games and practices.",
+             description='''Every player needs to drink water
+                         during games and practices.''',
              price="$0.99",
              category=category1)
 
@@ -96,7 +99,11 @@ session.commit()
 
 item2 = Item(user_id=1,
              name="Peking Duck",
-             description="A famous duck dish from Beijing[1] that has been prepared since the imperial era. The meat is prized for its thin, crisp skin, with authentic versions of the dish serving mostly the skin and little meat, sliced in front of the diners by the cook",
+             description='''A famous duck dish from Beijing[1] that has been
+                         prepared since the imperial era. The meat is prized
+                         for its thin, crisp skin, with authentic versions of
+                         the dish serving mostly the skin and little meat,
+                         sliced in front of the diners by the cook''',
              price="$25",
              category=category2)
 
@@ -105,7 +112,8 @@ session.commit()
 
 item3 = Item(user_id=1,
              name="Spicy Tuna Roll",
-             description="Seared rare ahi, avocado, edamame, cucumber with wasabi soy sauce ",
+             description='''Seared rare ahi, avocado, edamame,
+                         cucumber with wasabi soy sauce ''',
              price="15",
              category=category2)
 
@@ -114,7 +122,8 @@ session.commit()
 
 item4 = Item(user_id=1,
              name="Nepali Momo ",
-             description="Steamed dumplings made with vegetables, spices and meat. ",
+             description='''Steamed dumplings made with
+                         vegetables, spices and meat. ''',
              price="12",
              category=category2)
 
@@ -123,7 +132,9 @@ session.commit()
 
 item5 = Item(user_id=1,
              name="Beef Noodle Soup",
-             description="A Chinese noodle soup made of stewed or red braised beef, beef broth, vegetables and Chinese noodles.",
+             description='''A Chinese noodle soup made of stewed
+                         or red braised beef, beef broth, vegetables
+                         and Chinese noodles.''',
              price="14",
              category=category2)
 
@@ -132,7 +143,12 @@ session.commit()
 
 item6 = Item(user_id=1,
              name="Ramen",
-             description="a Japanese noodle soup dish. It consists of Chinese-style wheat noodles served in a meat- or (occasionally) fish-based broth, often flavored with soy sauce or miso, and uses toppings such as sliced pork, dried seaweed, kamaboko, and green onions.",
+             description='''a Japanese noodle soup dish. It consists of
+                         Chinese-style wheat noodles served in a meat- or
+                         (occasionally) fish-based broth, often flavored
+                         with soy sauce or miso, and uses toppings such as
+                         sliced pork, dried seaweed, kamaboko,
+                         and green onions.''',
              price="12",
              category=category2)
 
@@ -149,7 +165,9 @@ session.commit()
 
 item1 = Item(user_id=1,
              name="Pho",
-             description="a Vietnamese noodle soup consisting of broth, linguine-shaped rice noodles called banh pho, a few herbs, and meat.",
+             description='''a Vietnamese noodle soup consisting of broth,
+                         linguine-shaped rice noodles called banh pho,
+                         a few herbs, and meat.''',
              price="$8.99",
              category=category1)
 
@@ -158,7 +176,10 @@ session.commit()
 
 item2 = Item(user_id=1,
              name="Chinese Dumplings",
-             description="a common Chinese dumpling which generally consists of minced meat and finely chopped vegetables wrapped into a piece of dough skin. The skin can be either thin and elastic or thicker.",
+             description='''a common Chinese dumpling which generally
+                         consists of minced meat and finely chopped vegetables
+                         wrapped into a piece of dough skin. The skin can be
+                         either thin and elastic or thicker.''',
              price="$6.99",
              category=category1)
 
@@ -167,7 +188,8 @@ session.commit()
 
 item3 = Item(user_id=1,
              name="Gyoza",
-             description="light seasoning of Japanese gyoza with salt and soy sauce, and in a thin gyoza wrapper",
+             description='''light seasoning of Japanese gyoza with salt
+                         and soy sauce, and in a thin gyoza wrapper''',
              price="$9.95",
              category=category1)
 
@@ -176,7 +198,8 @@ session.commit()
 
 item4 = Item(user_id=1,
              name="Stinky Tofu",
-             description="Taiwanese dish, deep fried fermented tofu served with pickled cabbage.",
+             description='''Taiwanese dish, deep fried fermented
+                         tofu served with pickled cabbage.''',
              price="$6.99",
              category=category1)
 
@@ -185,7 +208,8 @@ session.commit()
 
 item2 = Item(user_id=1,
              name="Veggie Burger",
-             description="Juicy grilled veggie patty with tomato mayo and lettuce",
+             description='''Juicy grilled veggie patty with
+                         tomato mayo and lettuce''',
              price="$9.50",
              category=category1)
 
@@ -202,7 +226,9 @@ session.commit()
 
 item1 = Item(user_id=1,
              name="Tres Leches Cake",
-             description="Rich, luscious sponge cake soaked in sweet milk and topped with vanilla bean whipped cream and strawberries.",
+             description='''Rich, luscious sponge cake soaked in sweet
+                         milk and topped with vanilla bean whipped cream
+                         and strawberries.''',
              price="$2.99",
              category=category1)
 
@@ -220,7 +246,9 @@ session.commit()
 
 item3 = Item(user_id=1,
              name="Honey Boba Shaved Snow",
-             description="Milk snow layered with honey boba, jasmine tea jelly, grass jelly, caramel, cream, and freshly made mochi",
+             description='''Milk snow layered with honey boba,
+                         jasmine tea jelly, grass jelly, caramel,
+                         cream, and freshly made mochi''',
              price="$4.50",
              category=category1)
 
@@ -229,7 +257,9 @@ session.commit()
 
 item4 = Item(user_id=1,
              name="Cauliflower Manchurian",
-             description="Golden fried cauliflower florets in a midly spiced soya,garlic sauce cooked with fresh cilantro, celery, chilies,ginger & green onions",
+             description='''Golden fried cauliflower florets in a midly
+                         spiced soya, garlic sauce cooked with fresh cilantro,
+                         celery, chilies,ginger & green onions''',
              price="$6.95",
              category=category1)
 
@@ -238,7 +268,9 @@ session.commit()
 
 item5 = Item(user_id=1,
              name="Aloo Gobi Burrito",
-             description="Vegan goodness. Burrito filled with rice, garbanzo beans, curry sauce, potatoes (aloo), fried cauliflower (gobi) and chutney. Nom Nom",
+             description='''Vegan goodness. Burrito filled with rice,
+                         garbanzo beans, curry sauce, potatoes (aloo),
+                         fried cauliflower (gobi) and chutney. Nom Nom''',
              price="$7.95",
              category=category1)
 
@@ -247,7 +279,8 @@ session.commit()
 
 item2 = Item(user_id=1,
              name="Veggie Burger",
-             description="Juicy grilled veggie patty with tomato mayo and lettuce",
+             description='''Juicy grilled veggie patty with tomato
+                         mayo and lettuce''',
              price="$6.80",
              category=category1)
 
@@ -264,7 +297,8 @@ session.commit()
 
 item1 = Item(user_id=1,
              name="Shellfish Tower",
-             description="Lobster, shrimp, sea snails, crawfish, stacked into a delicious tower",
+             description='''Lobster, shrimp, sea snails, crawfish,
+                         stacked into a delicious tower''',
              price="$13.95",
              category=category1)
 
@@ -282,7 +316,8 @@ session.commit()
 
 item3 = Item(user_id=1,
              name="Mom's Spaghetti",
-             description="Spaghetti with some incredible tomato sauce made by mom",
+             description='''Spaghetti with some incredible
+                         tomato sauce made by mom''',
              price="$6.95",
              category=category1)
 
@@ -300,7 +335,8 @@ session.commit()
 
 item5 = Item(user_id=1,
              name="Tonkatsu Ramen",
-             description="Noodles in a delicious pork-based broth with a soft-boiled egg",
+             description='''Noodles in a delicious pork-based
+                         broth with a soft-boiled egg''',
              price="$7.95",
              category=category1)
 
@@ -317,7 +353,8 @@ session.commit()
 
 item1 = Item(user_id=1,
              name="Lamb Curry",
-             description="Slow cook that thang in a pool of tomatoes, onions and alllll those tasty Indian spices. Mmmm.",
+             description='''Slow cook that thang in a pool of tomatoes,
+                         onions and alllll those tasty Indian spices. Mmmm.''',
              price="$9.95",
              category=category1)
 
@@ -335,7 +372,8 @@ session.commit()
 
 item3 = Item(user_id=1,
              name="Potstickers",
-             description="Delicious chicken and veggies encapsulated in fried dough.",
+             description='''Delicious chicken and veggies
+                         encapsulated in fried dough.''',
              price="$6.50",
              category=category1)
 
@@ -353,7 +391,8 @@ session.commit()
 
 item2 = Item(user_id=1,
              name="Veggie Burger",
-             description="Juicy grilled veggie patty with tomato mayo and lettuce",
+             description='''Juicy grilled veggie patty with
+                         tomato mayo and lettuce''',
              price="$7.00",
              category=category1)
 
@@ -369,7 +408,8 @@ session.commit()
 
 item9 = Item(user_id=1,
              name="Chicken Fried Steak",
-             description="Fresh battered sirloin steak fried and smothered with cream gravy",
+             description='''Fresh battered sirloin steak fried
+                         and smothered with cream gravy''',
              price="$8.99", category=category1)
 
 session.add(item9)
@@ -378,7 +418,9 @@ session.commit()
 
 item1 = Item(user_id=1,
              name="Boysenberry Sorbet",
-             description="An unsettlingly huge amount of ripe berries turned into frozen (and seedless) awesomeness",
+             description='''An unsettlingly huge amount of ripe
+                         berries turned into frozen (and seedless)
+                         awesomeness''',
              price="$2.99",
              category=category1)
 
@@ -387,7 +429,8 @@ session.commit()
 
 item2 = Item(user_id=1,
              name="Broiled salmon",
-             description="Salmon fillet marinated with fresh herbs and broiled hot & fast",
+             description='''Salmon fillet marinated with fresh
+                         herbs and broiled hot & fast''',
              price="$10.95",
              category=category1)
 
@@ -396,7 +439,8 @@ session.commit()
 
 item3 = Item(user_id=1,
              name="Morels on toast (seasonal)",
-             description="Wild morel mushrooms fried in butter, served on herbed toast slices",
+             description='''Wild morel mushrooms fried in butter,
+                         served on herbed toast slices''',
              price="$7.50",
              category=category1)
 
@@ -405,7 +449,10 @@ session.commit()
 
 item4 = Item(user_id=1,
              name="Tandoori Chicken",
-             description="Chicken marinated in yoghurt and seasoned with a spicy mix(chilli, tamarind among others) and slow cooked in a cylindrical clay or metal oven which gets its heat from burning charcoal.",
+             description='''Chicken marinated in yoghurt and seasoned with
+                         a spicy mix(chilli, tamarind among others) and slow
+                         cooked in a cylindrical clay or metal oven which gets
+                         its heat from burning charcoal.''',
              price="$8.95",
              category=category1)
 
@@ -414,7 +461,8 @@ session.commit()
 
 item2 = Item(user_id=1,
              name="Veggie Burger",
-             description="Juicy grilled veggie patty with tomato mayo and lettuce",
+             description='''Juicy grilled veggie patty with tomato mayo and
+                         lettuce''',
              price="$9.50",
              category=category1)
 
@@ -440,7 +488,8 @@ session.commit()
 
 item1 = Item(user_id=1,
              name="Super Burrito Al Pastor",
-             description="Marinated Pork, Rice, Beans, Avocado, Cilantro, Salsa, Tortilla",
+             description='''Marinated Pork, Rice, Beans, Avocado,
+                         Cilantro, Salsa, Tortilla''',
              price="$5.95",
              category=category1)
 
@@ -449,7 +498,9 @@ session.commit()
 
 item2 = Item(user_id=1,
              name="Cachapa",
-             description="Golden brown, corn-based Venezuelan pancake; usually stuffed with queso telita or queso de mano, and possibly lechon. ",
+             description='''Golden brown, corn-based Venezuelan pancake;
+                         usually stuffed with queso telita or queso de mano,
+                         and possibly lechon. ''',
              price="$7.99",
              category=category1)
 
@@ -463,7 +514,8 @@ session.commit()
 
 item1 = Item(user_id=1,
              name="Chantrelle Toast",
-             description="Crispy Toast with Sesame Seeds slathered with buttery chantrelle mushrooms",
+             description='''Crispy Toast with Sesame Seeds slathered
+                         with buttery chantrelle mushrooms''',
              price="$5.95",
              category=category1)
 
@@ -472,7 +524,8 @@ session.commit()
 
 item1 = Item(user_id=1,
              name="Guanciale Chawanmushi",
-             description="Japanese egg custard served hot with spicey Italian Pork Jowl (guanciale)",
+             description='''Japanese egg custard served hot with spicey
+                         Italian Pork Jowl (guanciale)''',
              price="$6.95",
              category=category1)
 
@@ -482,7 +535,8 @@ session.commit()
 
 item1 = Item(user_id=1,
              name="Lemon Curd Ice Cream Sandwich",
-             description="Lemon Curd Ice Cream Sandwich on a chocolate macaron with cardamom meringue and cashews",
+             description='''Lemon Curd Ice Cream Sandwich on a chocolate macaron
+                         with cardamom meringue and cashews''',
              price="$4.25",
              category=category1)
 
